@@ -2,10 +2,15 @@ Synthesizing Electronic Health Records Using Improved Generative Adversarial Net
 ================
 Mrinal Kanti Baowaly, Chia-Ching Lin, Chao-Lin Liu, Kuan-Ta Chen
 
+Publication:
+------------
+
+Mrinal Kanti Baowaly, Chia-Ching Lin, Chao-Lin Liu, Kuan-Ta Chen, Synthesizing electronic health records using improved generative adversarial networks, Journal of the American Medical Informatics Association, Volume 26, Issue 3, March 2019, Pages 228–241, https://doi.org/10.1093/jamia/ocy142
+
 Our goal:
 ---------
 
-The goal of this research is to generate synthetic electronic health records (EHRs) using Improved Generative Adversarial Networks: Wasserstein GAN with gradient penalty (WGAN-GP) and Boundary-seeking GAN (BGAN ). We defined the two models as medWGAN and medBGAN respectively.
+The goal of this research is to generate synthetic electronic health records (EHRs) using two improved Generative Adversarial Networks: Wasserstein GAN with gradient penalty (WGAN-GP) and Boundary-seeking GAN (BGAN ). We defined the two models as medWGAN and medBGAN respectively.
 
 > The generated EHRs will be more realistic than the existing works (e.g. medGAN) and these data will be free of legal, security and privacy concerns
 
