@@ -17,6 +17,7 @@ from scipy.stats.stats import pearsonr
 
 _VALIDATION_RATIO = 0.1
 
+
 class MEDGAN(object):
     def __init__(self,
                  sess,
@@ -220,6 +221,7 @@ class MEDGAN(object):
                      out_name='temp.npy',
                      nSamples=10000,
                      batchSize=1000):
+
         x_emb = self.buildGeneratorTest(self.x_random, self.bn_train)
         tempVec = x_emb
         i = 0
@@ -443,7 +445,8 @@ class MEDGAN(object):
 
         return [d_loss_avg_vec, g_loss_avg_vec, corr_vec, nzc_vec]
     
-    def load(self, init_from, init_from_ckpt = None):
+    def load(self, init_from, init_from_ckpt=None):
+
         ckpt = tf.train.get_checkpoint_state(os.path.join(init_from, 'models'))
         if ckpt and ckpt.model_checkpoint_path:
             if init_from_ckpt is None:
@@ -457,6 +460,7 @@ class MEDGAN(object):
         else:
             print(" [*] Failed to find a checkpoint")
             return False, 0
+
 
 class MEDWGAN(MEDGAN):
     ## Reuse init function of MEDGAN
