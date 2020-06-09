@@ -1,0 +1,9 @@
+*.pyc
+
+datasets/
+.idea/
+__pycache__/
+
+medGAN/
+medBGAN/
+medWGAN/
