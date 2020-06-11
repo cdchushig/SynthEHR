@@ -33,7 +33,7 @@ class MEDGAN(object):
                  bnDecay=0.99,
                  l2scale=0.001):
         self.sess = sess
-        self.model_name=model_name
+        self.model_name = model_name
         ## create a dedicated folder for this model
         if os.path.exists(self.model_name):
             print('WARNING: the folder "{}" already exists!'.format(self.model_name))
@@ -77,7 +77,7 @@ class MEDGAN(object):
         self.d_vars = [var for var in t_vars if 'discriminator' in var.name]
         self.g_vars = [var for var in t_vars if 'generator' in var.name]
         ## model saver
-        self.saver = tf.train.Saver(max_to_keep = None) ## keep all checkpoints!
+        self.saver = tf.train.Saver(max_to_keep=None) ## keep all checkpoints!
     
     def loadData(self, dataPath=''):
         data = np.load(dataPath)
@@ -302,7 +302,8 @@ class MEDGAN(object):
 
         initOp = tf.global_variables_initializer()
         nBatches = int(np.ceil(float(trainX.shape[0]) / float(batchSize)))
-        log_path = os.path.join(self.model_name, 'models', self.model_name + '.log')
+        log_path = os.path.join(self.model_name, 'models', 'model.log')
+
 
         ## initialization
         self.sess.run(initOp)
@@ -407,16 +408,15 @@ class MEDGAN(object):
 
             ## (3) Save model weights
             if epoch > 0 and epoch % 10 == 0:
-                save_path = self.saver.save(self.sess, os.path.join(self.model_name, 'models', self.model_name + '.model'),
+                save_path = self.saver.save(self.sess, os.path.join(self.model_name, 'models', 'modelxyz.model'),
                                             global_step=epoch_counter)
-                print(save_path)
-                
+
                 ## monitor the quality of generated data during training process:
                 self.generateData(nSamples=trainX.shape[0],
                                   gen_from=self.model_name,
                                   out_name='temp.npy',
                                   batchSize=batchSize)
-                temp_data = np.load(self.model_name+'/outputs/temp.npy')
+                temp_data = np.load(self.model_name + '/outputs/temp.npy')
                 temp_data = np.rint(temp_data)
                 temp_data_mean = np.mean(temp_data, axis=0)
                 ## compute the correlation and number of all-zero columns
@@ -437,7 +437,9 @@ class MEDGAN(object):
                 ax.set_title('Epoch: %d, corr: %.4f, none-zero columns: %d'%(epoch, corr[0], nzc))
                 ax.set_xlabel('real')
                 ax.set_ylabel('generated')
-                fig.savefig(self.model_name+'/outputs/{}.png'.format(epoch))
+                ax.set_xlim(0, 1)
+                ax.set_ylim(0, 1)
+                fig.savefig(self.model_name + '/outputs/{}.png'.format(epoch))
                 plt.close(fig)
 
             ## counter for file names of saved models
@@ -570,7 +572,7 @@ class MEDWGAN(MEDGAN):
 
         initOp = tf.global_variables_initializer()
         nBatches = int(np.ceil(float(trainX.shape[0]) / float(batchSize)))
-        log_path = os.path.join(self.model_name, 'models', self.model_name + '.log')
+        log_path = os.path.join(self.model_name, 'models', 'model.log')
         
         ## initialization
         self.sess.run(initOp)
@@ -679,16 +681,15 @@ class MEDWGAN(MEDGAN):
 
             ## (3) Save model weights
             if epoch > 0 and epoch % 10 == 0:
-                save_path = self.saver.save(self.sess, os.path.join(self.model_name, 'models', self.model_name + '.model'),
+                save_path = self.saver.save(self.sess, os.path.join(self.model_name, 'models', 'modelxyz.model'),
                                             global_step=epoch_counter)
-                print(save_path)
-                
+
                 ## monitor the quality of generated data during training process:
                 self.generateData(nSamples=trainX.shape[0],
                                   gen_from=self.model_name,
                                   out_name='temp.npy',
                                   batchSize=batchSize)
-                temp_data = np.load(self.model_name+'/outputs/temp.npy')
+                temp_data = np.load(self.model_name + '/outputs/temp.npy')
                 temp_data = np.rint(temp_data)
                 temp_data_mean = np.mean(temp_data, axis=0)
                 ## compute the correlation and number of all-zero columns
