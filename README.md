@@ -34,3 +34,14 @@ Download the MIMIC-III data, aggregate the medical codes (e.g. diagonsis codes, 
 -   To specify output folder name, add parameter `--model [model_name]`, where [model_name] is `medGAN` with any prefix or postfix, such as `medGAN_n_epoch_500`.
 -   To run improved GAN, add parameter `--model medWGAN` or `--model medBGAN`. Again, `medWGAN` and `medBGAN` can also have any prefix or postfix.
 -   For more parameters, please refer to the source code in `train.py`.
+
+####How to train models
+```console
+python train.py --data_file datasets/m_crg5424_bin.npy --n_pretrain_epoch 100 --n_epoch 400 --model medBGAN --batch_size 200 --model_name models/crg5424_bin/medbgan
+```
+
+
+####How to generate data
+```console
+python train.py --data_file datasets/m_crg5424_bin.npy --n_pretrain_epoch 100 --n_epoch 400 --model=models/crg5424_bin/medbgan --n_synthetic_samples 1000 --generate_data True --model_file modelxyz.model-30
+```
