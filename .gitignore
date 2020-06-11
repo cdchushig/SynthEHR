@@ -1,6 +1,7 @@
 *.pyc
 
 datasets/
+models/
 .idea/
 __pycache__/
 
