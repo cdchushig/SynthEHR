@@ -38,6 +38,7 @@ Download the MIMIC-III data, aggregate the medical codes (e.g. diagonsis codes, 
 ####How to train models
 ```console
 python train.py --data_file datasets/m_crg5424_bin.npy --n_pretrain_epoch 100 --n_epoch 400 --model medBGAN --batch_size 200 --model_name models/crg5424_bin/medbgan
+python train.py --data_file datasets/m_crg7071_bin.npy --n_pretrain_epoch 100 --n_epoch 1000 --model medBGAN --batch_size 40 --pretrain_batch_size 40
 ```
 
 
